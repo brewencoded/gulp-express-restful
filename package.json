@@ -1,0 +1,49 @@
+{
+  "name": "gulp-express-restful",
+  "version": "0.1.0",
+  "description": "A RESTful API build on express with automatic server refresh. Uses JWT auth and basic access authetication along with sequelize and knex.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp dev",
+    "test": "gulp test"
+  },
+  "keywords": [
+    "express",
+    "gulp",
+    "nodemon",
+    "REST",
+    "Json",
+    "Web",
+    "Token",
+    "sequelize",
+    "knex"
+  ],
+  "author": "Victor A. Rodriguez (https://github.com/full-stakk)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-changed": "^1.3.0",
+    "gulp-jsdoc": "^0.1.5",
+    "gulp-jshint": "^2.0.1",
+    "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.0.7",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "mocha": "^2.4.5",
+    "plato": "^1.5.0",
+    "request": "^2.72.0"
+  },
+  "dependencies": {
+    "basic-auth": "^1.0.4",
+    "bcrypt": "^0.8.6",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^7.0.0",
+    "knex": "^0.11.3",
+    "morgan": "^1.7.0",
+    "sequelize": "^3.23.2",
+    "sqlite3": "^3.1.4"
+  }
+}
