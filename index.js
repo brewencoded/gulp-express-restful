@@ -36,7 +36,7 @@ app.use('*', function(req, res) {
     res.sendFile(path.join(__dirname, '/static/index.html'));
 });
 
-app.listen(port, function (err) {
+const server = app.listen(port, function (err) {
     if (err) {
         console.log(err);
         return;
@@ -44,4 +44,4 @@ app.listen(port, function (err) {
     console.log('\nListening at http://localhost:' + config.PORT + '\n');
 });
 
-module.exports = app;
+module.exports = server;

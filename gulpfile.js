@@ -39,7 +39,7 @@ gulp.task('mocha', ['watch'], () => {
 ///////////////////////////////////////////////////////
 // start node server and reload on server file changes
 ///////////////////////////////////////////////////////
-gulp.task('start-server', ['jshint'], () => {
+gulp.task('start-server', ['jshint', 'mocha'], () => {
     nodemon({
         script: 'index.js',
         ext: 'js',
@@ -53,12 +53,12 @@ gulp.task('start-server', ['jshint'], () => {
 ///////////////////////////////////////////////////////
 // watch development files
 ///////////////////////////////////////////////////////
-gulp.task('watch', ['start-server'], () => {
+gulp.task('watch', () => {
     gulp.watch([src.index, src.server, '!' + src.config], ['test']);
 });
 
 ///////////////////////////////////////////////////////
 // set tasks to call from scripts
 ///////////////////////////////////////////////////////
-gulp.task('dev', ['mocha', 'watch']);
+gulp.task('dev', ['start-server', 'watch']);
 gulp.task('test', ['jshint', 'mocha']);
