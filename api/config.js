@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('sqlite3', null, null, {
-    dialect: 'sqlite',
+var db = new Sequelize('sqlite3', null, null, { // database, username, password
+    dialect: 'sqlite', // sql syntax: mysql, msqlite, postgres, etc.
     storage: './app.db' // persist data to file. default: memory
 });
 module.exports = {

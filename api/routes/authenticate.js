@@ -6,25 +6,31 @@ const auth = require('../auth'),
     jwt = require('jsonwebtoken'),
     basicAuth = require('basic-auth');
 
+/**
+* All routes relating to authentication
+**/
 module.exports = function (router) {
     router.route('/login')
         .get(function (request, response) {
+            // grab variables from basic authorization header
             var user = basicAuth(request);
             if (user && user.pass && user.name) {
                 var email = user.name;
                 var password = user.pass;
+                // Search for a single result in the database
                 User.findOne({
                     where: {
                         email: email
                     }
                 })
                 .then(function (user) {
+                    // encrypt password using the same hash and salt and compare it to the database password
                     bcrypt.compare(password, user.password, function (error, isMatch) {
                         if (error) {
                             response.json(error);
                         } else {
                             if (isMatch) {
-                                jwt.sign({
+                                jwt.sign({ // create json web token
                                     email: user.email
                                 },
                                 SECRET,
@@ -39,11 +45,11 @@ module.exports = function (router) {
                                     } else {
                                         response.json({
                                             created: true,
-                                            token: token
+                                            token: token // send token to user
                                         });
                                     }
                                 });
-                            } else {
+                            } else { // invalid credentials
                                 response.json({
                                     validUser: false,
                                     message: 'The supplied email and password combination does not match.'
@@ -64,8 +70,9 @@ module.exports = function (router) {
         });
 
     router.route('/token')
-        .all(auth.validateJWT)
+        .all(auth.validateJWT) // check if token is still valid
         .get(function (request, response) {
+            // return token if it is still valid
             response.json({
                 token: request.headers.authorization.split(' ')[1]
             });
