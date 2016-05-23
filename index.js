@@ -1,9 +1,17 @@
+/**
+* variables and imports
+**/
 const express = require('express'),
-    router = require('./api/routes/api')(express.Router()),
+    router = express.Router(),
     bodyParser = require('body-parser'),
     path = require('path'),
     morgan = require('morgan'),
     config = require('./config');
+
+// routes
+const article = require('./api/routes/article')(router),
+    user = require('./api/routes/user')(router),
+    authenticate = require('./api/routes/authenticate')(router);
 
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.PORT;
@@ -35,6 +43,7 @@ app.use(staticPath, express.static('./static'));
 app.use('*', function(req, res) {
     res.sendFile(path.join(__dirname, '/static/index.html'));
 });
+
 
 const server = app.listen(port, function (err) {
     if (err) {
