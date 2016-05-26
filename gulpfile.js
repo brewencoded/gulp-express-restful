@@ -4,8 +4,7 @@ const gulp = require('gulp'),
     stylish = require('jshint-stylish'),
     mocha = require('gulp-mocha'),
     util = require('gulp-util'),
-    nodemon = require('gulp-nodemon'),
-    env = require('gulp-env');
+    nodemon = require('gulp-nodemon');
 
 const src = {
     index: './index.js',
